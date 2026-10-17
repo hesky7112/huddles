@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050506;
+  --s1: #0e0e11;
+  --s2: #17171c;
+  --line: #26262c;
+  --tx: #f5f4ef;
+  --mut: #8e8d87;
+  --acc: #2be08f;
+  --acc-ink: #04140c;
+  --vio: #8f7bff;
+  --warm: #ff8a57;
+  --r: 22px;
+  --sh: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+  --f: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f3ed;
+  --s1: #ffffff;
+  --s2: #ece7dc;
+  --line: #d8d2c2;
+  --tx: #15140f;
+  --mut: #676357;
+  --acc: #0a8a57;
+  --acc-ink: #ffffff;
+  --vio: #5b45e6;
+  --warm: #f2602a;
+  --sh: 0 16px 36px -12px rgba(60, 50, 30, 0.18);
+}
+
+:root[data-theme="light"] .podcast-card,
+:root[data-theme="light"] .recording-card {
+  box-shadow: 0 8px 24px -4px rgba(45, 35, 20, 0.15), 0 4px 10px -2px rgba(45, 35, 20, 0.08);
+}
+
+:root[data-theme="light"] input[type="range"] {
+  background-color: #d8d2c2;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #cfc8b8;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #a8a08e;
+}
+
+:root[data-outlines="false"] {
+  --line: transparent !important;
+}
+
+:root[data-outlines="false"] * {
+  border-color: transparent !important;
+}
+
+:root[data-outlines="false"] input,
+:root[data-outlines="false"] select {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+:root[data-theme="light"][data-outlines="false"] input,
+:root[data-theme="light"][data-outlines="false"] select {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+:root[data-outlines="false"] .stroke-text {
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.18) !important;
+}
+
+:root[data-theme="light"][data-outlines="false"] .stroke-text {
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.18) !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--tx);
+  font-family: var(--f);
+  overflow: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  user-select: none;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mut);
+}
+
+/* Pulse animation for live indicators */
+@keyframes bl {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(0.9); }
+}
+
+.animate-live-pulse {
+  animation: bl 1.2s infinite;
+}
+
+/* Speaker ring pulse animation */
+@keyframes speaker-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--acc) 60%, transparent);
+  }
+  100% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 16px transparent;
+  }
+}
+
+.animate-speaking-ring {
+  animation: speaker-ring 1.15s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+/* Typing bounce animation */
+@keyframes bounce-typing {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-typing-1 {
+  animation: bounce-typing 1s infinite 0s;
+}
+.animate-typing-2 {
+  animation: bounce-typing 1s infinite 0.15s;
+}
+.animate-typing-3 {
+  animation: bounce-typing 1s infinite 0.3s;
+}
